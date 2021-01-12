@@ -12,7 +12,6 @@ const resetButton = document.getElementById('reset-button');
 let guessesCounter = 4;
 let correctNumber = Math.ceil(Math.random() * 20);
 
-// set event listeners to update state and DOM
 
 //submit button event listener
 submitButton.addEventListener('click', () => {
@@ -69,7 +68,6 @@ resetButton.addEventListener('click', () => {
     submitButton.disabled = false;
     guessesRemaining.textContent = `Guesses Remaining: ${guessesCounter}`;
 });
-
 
 
 function gameEnded() {

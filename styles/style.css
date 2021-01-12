@@ -8,6 +8,36 @@ body, html {
 * {
     box-sizing: border-box;
 }
+body {
+    background-color: #493843;
+    color: #EABDA8;
+}
+header {
+    text-align: center;
+}
+h1 {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 1.5rem;
+}
+.outer-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.inner-container {
+    margin: 40px auto;
+    width: 50%;
+    padding: 80px;
+    height: 300px;
+    text-align: center;
+    background-color: #61988E;
+    border: 5px solid #CBBFBB;
+}
+p {
+    margin-bottom: 20px;
+    }
 
 #reset-button {
     display: none;
