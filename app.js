@@ -1,10 +1,15 @@
 // import functions and grab DOM elements
 import { compareNumbers } from './utils.js';
+import { 
+    decrementAndDisplay,
+    tooLow,
+    tooHigh,
+    youWon,
+    youLost} from './userInterfaceUtils.js';
 
 const guessesRemaining = document.getElementById('guesses-remaining');
 const answerInput = document.getElementById('answer-input');
 const submitButton = document.getElementById('submit-button');
-const resultBox = document.getElementById('result-box');
 const resetButton = document.getElementById('reset-button');
 
 
@@ -17,42 +22,36 @@ let correctNumber = Math.ceil(Math.random() * 20);
 submitButton.addEventListener('click', () => {
 
     //increment and display number of guesses remaining
-    guessesCounter--;
-    guessesRemaining.textContent = `Guesses Remaining: ${guessesCounter}`;
+    guessesCounter = decrementAndDisplay(guessesCounter);
 
     //store user input as a number and pass it to compareNumbers function
     const userGuess = answerInput.valueAsNumber;
     const result = compareNumbers(userGuess, correctNumber);
 
-    //declare result string variable
-    let resultString;
-    // let lostYet = false;
 
-    //sort result and set string variable to correct response 
+    //sort result and display correct response
     switch (result){
         case -1:
             if (guessesCounter < 1){
-                resultString = 'Sorry you have run out of guesses, you lose!';
+                youLost();
                 gameEnded();
             } else {
-                resultString = 'Your guess is too low!';
+                tooLow();
             }
             break;
         case 0:
-            resultString = 'You guessed the correct number. You won!';
+            youWon();
             gameEnded();
             break;
         case 1:
             if (guessesCounter < 1){
-                resultString = 'Sorry you have run out of guesses, you lose!';
+                youLost();
                 gameEnded();
             } else {
-                resultString = 'Your guess is too high!';
+                tooHigh();
             }
             break;
     }
-    resultBox.textContent = resultString;
-
 });
 
 // reset button event listener
@@ -73,5 +72,5 @@ resetButton.addEventListener('click', () => {
 function gameEnded() {
     answerInput.disabled = true;
     submitButton.disabled = true;
-    resetButton.style.display = 'block';
+    resetButton.style.display = 'inline';
 }
